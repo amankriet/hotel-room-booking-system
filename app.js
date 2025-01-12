@@ -8,6 +8,7 @@ import logger from 'morgan';
 import indexRouter from './routes/index.js';
 import bookingsRouter from './routes/bookings.js';
 import connectDB from "./config/db.js";
+import errorHandler from "./middleware/errorHandler.js";
 
 dotenv.config();
 
@@ -28,5 +29,7 @@ connectDB()
 
 app.use('/', indexRouter);
 app.use('/bookings', bookingsRouter);
+
+app.use(errorHandler)
 
 export default app;
