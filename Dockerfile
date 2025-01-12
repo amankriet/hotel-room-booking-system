@@ -6,6 +6,12 @@ COPY . /app
 
 RUN npm install
 
-EXPOSE 3000
+ARG ENV="dev"
+ARG PORT="3001"
+
+ENV DATABASE_URL="mongodb://127.0.0.1:27017/hotel-room-booking-system"
+ENV ENV=$ENV
+
+EXPOSE $PORT
 
 CMD ["npm", "start"]

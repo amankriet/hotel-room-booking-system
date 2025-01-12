@@ -1,0 +1,35 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - hrbs-network
+    restart: always
+  nodejs-server:
+    image: hrbs
+    environment:
+        DATABASE_URL_DEV: mongodb://mongo:27017/hotel-room-booking-system
+        DATABASE_URL_PROD: mongodb://mongo:27017/hotel-room-booking-system
+        DATABASE_URL_LOCAL: mongodb://127.0.0.1:27017/hotel-room-booking-system
+        ENV: dev
+        PORT: 3001
+    container_name: nodejs-server
+    ports:
+      - "3001:3001"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - hrbs-network
+    depends_on:
+      - mongo
+    restart: always
+networks:
+    hrbs-network:
+        driver: bridge
+volumes:
+    mongo-data:
+      driver: local

@@ -129,4 +129,3 @@ dist
 .pnp.*
 /.idea/jsLibraryMappings.xml
 /.idea
-/bin
