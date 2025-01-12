@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
+import bookingsRouter from './routes/bookings.js';
 import connectDB from "./config/db.js";
 
 dotenv.config();
@@ -27,6 +27,6 @@ connectDB()
     .catch(err => console.log(err))
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/bookings', bookingsRouter);
 
 export default app;
