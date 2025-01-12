@@ -1,6 +1,6 @@
 services:
   mongo:
-    image: mongo
+    image: mongo:8.0.1
     container_name: mongo
     ports:
       - "27017:27017"
@@ -10,18 +10,13 @@ services:
       - hrbs-network
     restart: always
   nodejs-server:
-    image: hrbs
-    environment:
-        DATABASE_URL_DEV: mongodb://mongo:27017/hotel-room-booking-system
-        DATABASE_URL_PROD: mongodb://mongo:27017/hotel-room-booking-system
-        DATABASE_URL_LOCAL: mongodb://127.0.0.1:27017/hotel-room-booking-system
-        ENV: dev
-        PORT: 3001
+    build: .
     container_name: nodejs-server
     ports:
       - "3001:3001"
     volumes:
-      - mongo-data:/data/db
+        - .:/app
+    working_dir: /app
     networks:
       - hrbs-network
     depends_on:

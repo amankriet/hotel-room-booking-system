@@ -1,23 +1,9 @@
 import mongoose from 'mongoose';
 import logger from 'morgan'
+import dotenv from 'dotenv';
+import dbUrl from "./dbUrl.js";
 
-const env = process.env.ENV || "dev";
-let dbUrl = "";
-
-switch (env) {
-    case "dev":
-        dbUrl = process.env.DATABASE_URL_DEV;
-        mongoose.set('debug', true);
-        break;
-    case "prod":
-        dbUrl = process.env.DATABASE_URL_PROD;
-        mongoose.set('debug', false);
-        break;
-    default:
-        dbUrl = process.env.DATABASE_URL_LOCAL;
-        mongoose.set('debug', true);
-        break;
-}
+dotenv.config();
 
 const connectDB = async () => {
     try {
@@ -34,11 +20,11 @@ const connectDB = async () => {
 
         mongoose.connection.on('error', (error) => {
             console.error('Mongoose connection error:', error);
-            logger(env)('Mongoose connection error:', error);
+            logger('Mongoose connection error:', error);
         });
     } catch (error) {
         console.error('MongoDB connection error:', error);
-        logger(env)('MongoDB connection error:', error);
+        logger('MongoDB connection error:', error);
         process.exit(1);
     }
 };
