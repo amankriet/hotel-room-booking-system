@@ -2,7 +2,7 @@ import Booking from '../models/Booking.js';
 import Room from '../models/Room.js';
 
 // Book a room
-export const bookRoom = async (req, res) => {
+export const bookRoom = async (req, res, next) => {
     const { name, email, contact, checkInDate, checkOutDate } = req.body;
     try {
         const availableRoom = await Room.findOne({ isAvailable: true });
@@ -35,12 +35,12 @@ export const bookRoom = async (req, res) => {
             }
         });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        next(error);
     }
 };
 
 // View booking details
-export const viewBookingDetails = async (req, res) => {
+export const viewBookingDetails = async (req, res, next) => {
     const { email } = req.params;
     try {
         const booking = await Booking.findOne({ email });
@@ -49,22 +49,22 @@ export const viewBookingDetails = async (req, res) => {
         }
         res.status(200).json(booking);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        next(error);
     }
 };
 
 // View all guests
-export const viewAllGuests = async (req, res) => {
+export const viewAllGuests = async (req, res, next) => {
     try {
         const guests = await Booking.find({ checkOutDate: { $gte: new Date() } });
         res.status(200).json(guests);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        next(error);
     }
 };
 
 // Cancel booking
-export const cancelBooking = async (req, res) => {
+export const cancelBooking = async (req, res, next) => {
     const { email, roomNumber } = req.body;
     try {
         const booking = await Booking.findOneAndDelete({ email, roomNumber });
@@ -78,12 +78,12 @@ export const cancelBooking = async (req, res) => {
 
         res.status(200).json({ message: 'Booking cancelled successfully' });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        next(error);
     }
 };
 
 // Modify booking
-export const modifyBooking = async (req, res) => {
+export const modifyBooking = async (req, res, next) => {
     const { email, checkInDate, checkOutDate } = req.body;
     try {
         const booking = await Booking.findOne({ email });
@@ -97,6 +97,6 @@ export const modifyBooking = async (req, res) => {
 
         res.status(200).json({ message: 'Booking modified successfully' });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        next(error);
     }
 };
