@@ -6,6 +6,8 @@ This project is a Node.js API for managing hotel room bookings. It provides endp
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Running with Docker](#running-with-docker)
+- [Running with Docker Compose](#running-with-docker-compose)
 - [API Endpoints](#api-endpoints)
 - [License](#license)
 
@@ -36,6 +38,45 @@ This project is a Node.js API for managing hotel room bookings. It provides endp
     npm start
     ```
 2. The API will be available at `http://localhost:3001`.
+
+## Running with Docker
+
+1. Build the Docker image:
+    ```sh
+    docker build -t hotel-room-booking-system .
+    ```
+2. Run the Docker container:
+    ```sh
+    docker run -d -p 3001:3001 --env-file .env hotel-room-booking-system
+    ```
+
+## Running with Docker Compose
+
+1. Create a `docker-compose.yml` file in the root directory with the following content:
+    ```yaml
+    version: '3.8'
+    services:
+      app:
+        build: .
+        ports:
+          - "3001:3001"
+        env_file:
+          - .env
+        depends_on:
+          - mongo
+      mongo:
+        image: mongo:latest
+        ports:
+          - "27017:27017"
+        volumes:
+          - mongo-data:/data/db
+    volumes:
+      mongo-data:
+    ```
+2. Start the services:
+    ```sh
+    docker-compose up -d
+    ```
 
 ## API Endpoints
 
