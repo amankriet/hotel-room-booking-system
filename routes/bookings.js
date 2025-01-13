@@ -10,7 +10,7 @@ import {
 const router = Router();
 
 router.post('/book', bookRoom);
-router.get('/view/:email', viewBookingDetails);
+router.get('/view', viewBookingDetails);
 router.get('/view-all', viewAllGuests);
 router.delete('/cancel', cancelBooking);
 router.put('/modify', modifyBooking);

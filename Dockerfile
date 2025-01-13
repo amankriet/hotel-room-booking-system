@@ -15,4 +15,4 @@ ENV ENV=$ENV
 
 EXPOSE $PORT
 
-CMD ["npm", "run", "init-rooms", "&&", "npm", "start"]
+CMD ["npm", "start"]
