@@ -52,28 +52,7 @@ This project is a Node.js API for managing hotel room bookings. It provides endp
 
 ## Running with Docker Compose
 
-1. Create a `docker-compose.yml` file in the root directory with the following content:
-    ```yaml
-    version: '3.8'
-    services:
-      app:
-        build: .
-        ports:
-          - "3001:3001"
-        env_file:
-          - .env
-        depends_on:
-          - mongo
-      mongo:
-        image: mongo:latest
-        ports:
-          - "27017:27017"
-        volumes:
-          - mongo-data:/data/db
-    volumes:
-      mongo-data:
-    ```
-2. Start the services:
+1. Run the docker services directly using the `docker-compose.yml` file:
     ```sh
     docker-compose up -d
     ```
