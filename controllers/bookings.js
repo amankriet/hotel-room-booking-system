@@ -1,5 +1,6 @@
 import Booking from '../models/Booking.js';
 import Room from '../models/Room.js';
+import {convertToISODate} from "../utils/common-methods.js";
 
 // Book a room
 export const bookRoom = async (req, res, next) => {
@@ -17,8 +18,8 @@ export const bookRoom = async (req, res, next) => {
             name,
             email,
             contact,
-            checkInDate,
-            checkOutDate,
+            checkInDate: new Date(checkInDate),
+            checkOutDate: new Date(checkOutDate),
             roomNumber: roomNumber
         });
 
@@ -41,7 +42,7 @@ export const bookRoom = async (req, res, next) => {
 
 // View booking details
 export const viewBookingDetails = async (req, res, next) => {
-    const { email } = req.params;
+    const { email } = req.query;
     try {
         const booking = await Booking.findOne({ email });
         if (!booking) {
@@ -56,7 +57,8 @@ export const viewBookingDetails = async (req, res, next) => {
 // View all guests
 export const viewAllGuests = async (req, res, next) => {
     try {
-        const guests = await Booking.find({ checkOutDate: { $gte: new Date() } });
+        const today = convertToISODate(new Date())
+        const guests = await Booking.find({ checkOutDate: { $gte: today } });
         res.status(200).json(guests);
     } catch (error) {
         next(error);
@@ -91,8 +93,8 @@ export const modifyBooking = async (req, res, next) => {
             return res.status(404).json({ message: 'Booking not found' });
         }
 
-        booking.checkInDate = checkInDate;
-        booking.checkOutDate = checkOutDate;
+        booking.checkInDate = new Date(checkInDate);
+        booking.checkOutDate = new Date(checkOutDate);
         await booking.save();
 
         res.status(200).json({ message: 'Booking modified successfully' });
