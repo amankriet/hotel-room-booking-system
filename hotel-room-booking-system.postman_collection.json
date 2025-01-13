@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Nidhi\",\n    \"email\": \"nidhi@gmail.com\",\n    \"contact\": \"8439775477\",\n    \"checkInDate\": \"2025-01-14\",\n    \"checkOutDate\": \"2025-01-15\"\n}",
+							"raw": "{\n    \"name\": \"Aman Kumar\",\n    \"email\": \"amankriet@gmail.com\",\n    \"contact\": \"8439775478\",\n    \"checkInDate\": \"2025-01-14\",\n    \"checkOutDate\": \"2025-01-15\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -60,7 +60,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/bookings/view?email=nidhi@gmail.com",
+							"raw": "{{base-url}}/bookings/view?email=amankriet@gmail.com",
 							"host": [
 								"{{base-url}}"
 							],
@@ -71,7 +71,7 @@
 							"query": [
 								{
 									"key": "email",
-									"value": "nidhi@gmail.com"
+									"value": "amankriet@gmail.com"
 								}
 							]
 						}
@@ -85,7 +85,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"nidhi@gmail.com\",\n    \"roomNumber\": 2\n}",
+							"raw": "{\n    \"email\": \"amankriet@gmail.com\",\n    \"roomNumber\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
