@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "c1d98c88-32ec-4c7c-8312-4b9a53c8d245",
+		"name": "hotel-room-booking-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7869353"
+	},
+	"item": [
+		{
+			"name": "bookings",
+			"item": [
+				{
+					"name": "book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Nidhi\",\n    \"email\": \"nidhi@gmail.com\",\n    \"contact\": \"8439775477\",\n    \"checkInDate\": \"2025-01-14\",\n    \"checkOutDate\": \"2025-01-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/bookings/book",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"bookings",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/bookings/view-all",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"bookings",
+								"view-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/bookings/view?email=nidhi@gmail.com",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"bookings",
+								"view"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "nidhi@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"nidhi@gmail.com\",\n    \"roomNumber\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/bookings/cancel",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"bookings",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modify",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"nidhi@gmail.com\",\n    \"checkInDate\": \"2025-01-15\",\n    \"checkOutDate\": \"2025-01-17\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/bookings/modify",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"bookings",
+								"modify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "base-url",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001"
+				}
+			},
+			"response": []
+		}
+	]
+}
